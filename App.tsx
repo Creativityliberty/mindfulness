@@ -5,6 +5,8 @@ import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
 import { CourseGrid } from './components/CourseGrid';
 import { FeaturesSection } from './components/FeaturesSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { AuthPage } from './components/AuthPage';
 import { ContactChatbot } from './components/ContactChatbot';
@@ -83,6 +85,12 @@ const App: React.FC = () => {
               </div>
               <div className="reveal" id="public">
                 <FeaturesSection />
+              </div>
+              <div className="reveal">
+                <TestimonialsSection />
+              </div>
+              <div className="reveal">
+                <FAQSection />
               </div>
               <section className="py-24 bg-white reveal">
                 <div className="max-w-5xl mx-auto px-6 md:px-12">
