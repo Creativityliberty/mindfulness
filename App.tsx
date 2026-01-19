@@ -20,7 +20,7 @@ import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { ArrowRight, Sparkles, Gem, Activity, Brain, Compass, Heart, Zap, Users, GraduationCap, Award } from 'lucide-react';
 import { THEME } from './theme';
 
-export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact' | 'legal' | 'terms' | 'privacy';
+export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact' | 'legal' | 'terms' | 'privacy' | 'formations' | 'about' | 'public';
 
 const HeroBanner: React.FC = () => {
   const items = [
@@ -129,6 +129,33 @@ const App: React.FC = () => {
         return <CourseDetail course={selectedCourse} onBack={() => setCurrentView('landing')} onJoin={() => handleAuthClick('signup')} />;
       case 'contact':
         return <ContactPage onBack={() => setCurrentView('landing')} />;
+      case 'formations':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <div className="pt-24"><CourseGrid onCourseClick={handleCourseClick} /></div>
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
+      case 'about':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <div className="pt-24">
+              <AboutSection />
+              <InstructorsSection />
+            </div>
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
+      case 'public':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <div className="pt-24"><FeaturesSection /></div>
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
       case 'legal':
         return (
           <>

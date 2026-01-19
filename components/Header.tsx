@@ -23,9 +23,9 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
 
   const navLinks = [
     { name: 'Accueil', href: '#', action: () => onNavigate('landing') },
-    { name: 'Formations', href: '#formations', action: () => onNavigate('landing') },
-    { name: 'À propos', href: '#a-propos', action: () => onNavigate('landing') },
-    { name: 'Public', href: '#public', action: () => onNavigate('landing') },
+    { name: 'Formations', href: '#', action: () => onNavigate('formations') },
+    { name: 'À propos', href: '#', action: () => onNavigate('about') },
+    { name: 'Public', href: '#', action: () => onNavigate('public') },
     { name: 'Contact', href: '#', action: () => onNavigate('contact') },
   ];
 
@@ -58,8 +58,8 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
                 key={link.name} 
                 href={link.href}
                 onClick={(e) => {
+                  e.preventDefault();
                   if(link.action) {
-                    if(link.name === 'Contact') e.preventDefault();
                     link.action();
                   }
                 }}
@@ -108,7 +108,8 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
           <a 
             key={link.name} 
             href={link.href}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setIsMenuOpen(false);
               link.action();
             }}
