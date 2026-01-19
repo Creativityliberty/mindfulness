@@ -2,123 +2,280 @@
 @source "./*.{js,ts,jsx,tsx}";
 @source "./components/**/*.{js,ts,jsx,tsx}";
 
+/* ============================================
+   MINDFULNESS STUDIO - DESIGN SYSTEM
+   Professional CSS Architecture
+   ============================================ */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply bg-slate-50 text-slate-900;
+    @apply bg-slate-50 text-slate-900 font-sans;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-black tracking-tight;
+    @apply font-black tracking-tight leading-tight;
   }
 
-  button {
-    @apply transition-all duration-300 ease-out;
+  h1 { @apply text-5xl md:text-6xl lg:text-7xl; }
+  h2 { @apply text-4xl md:text-5xl; }
+  h3 { @apply text-3xl md:text-4xl; }
+  h4 { @apply text-2xl md:text-3xl; }
+  h5 { @apply text-xl md:text-2xl; }
+  h6 { @apply text-lg md:text-xl; }
+
+  p { @apply text-base md:text-lg leading-relaxed; }
+
+  a { @apply transition-colors duration-200; }
+
+  button { @apply transition-all duration-300 ease-out cursor-pointer; }
+
+  img { @apply max-w-full h-auto; }
+
+  ::selection {
+    @apply bg-indigo-600 text-white;
   }
 }
 
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
 @layer components {
-  /* Premium Card Component */
+  /* --- BUTTONS --- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-bold rounded-2xl transition-all duration-300 active:scale-95;
+  }
+
+  .btn-sm { @apply px-4 py-2 text-sm; }
+  .btn-md { @apply px-6 py-3 text-base; }
+  .btn-lg { @apply px-8 py-4 text-lg; }
+  .btn-xl { @apply px-10 py-5 text-xl; }
+
+  .btn-primary {
+    @apply btn bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-500/30;
+  }
+
+  .btn-secondary {
+    @apply btn bg-slate-100 text-slate-900 hover:bg-slate-200;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50;
+  }
+
+  .btn-ghost {
+    @apply btn text-indigo-600 hover:bg-indigo-50;
+  }
+
+  .btn-white {
+    @apply btn bg-white text-indigo-700 hover:bg-slate-50 shadow-lg;
+  }
+
+  /* --- CARDS --- */
+  .card {
+    @apply bg-white rounded-3xl border border-slate-200 overflow-hidden;
+  }
+
   .card-premium {
-    @apply bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-indigo-200;
+    @apply card shadow-lg hover:shadow-2xl transition-all duration-300 hover:border-indigo-200;
   }
 
   .card-glass {
     @apply backdrop-blur-xl bg-white/70 border border-white/40 rounded-3xl shadow-xl;
   }
 
-  /* Modern Button Variants */
-  .btn-primary {
-    @apply bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95 transition-all;
+  .card-hover {
+    @apply hover:-translate-y-2 transition-transform duration-300;
   }
 
-  .btn-secondary {
-    @apply bg-slate-100 text-slate-900 px-8 py-3 rounded-2xl font-bold hover:bg-slate-200 active:scale-95 transition-all;
+  /* --- INPUTS --- */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 bg-white transition-all duration-200;
+    @apply focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 focus:outline-none;
   }
 
-  .btn-outline {
-    @apply border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-2xl font-bold hover:bg-indigo-50 active:scale-95 transition-all;
+  .input-lg {
+    @apply px-6 py-4 rounded-2xl text-lg;
   }
 
-  .btn-ghost {
-    @apply text-indigo-600 px-6 py-2 rounded-xl font-semibold hover:bg-indigo-50 transition-all;
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-100;
   }
 
-  /* Input Styles */
-  .input-modern {
-    @apply w-full px-6 py-3 rounded-2xl border-2 border-slate-200 focus:border-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-100 transition-all bg-white;
+  .input-success {
+    @apply border-emerald-500 focus:border-emerald-500 focus:ring-emerald-100;
   }
 
-  /* Badge Components */
-  .badge-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold;
+  /* --- BADGES --- */
+  .badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold;
   }
 
-  .badge-success {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-semibold;
+  .badge-primary { @apply bg-indigo-100 text-indigo-700; }
+  .badge-secondary { @apply bg-slate-100 text-slate-700; }
+  .badge-success { @apply bg-emerald-100 text-emerald-700; }
+  .badge-warning { @apply bg-amber-100 text-amber-700; }
+  .badge-error { @apply bg-red-100 text-red-700; }
+
+  /* --- SECTIONS --- */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
   }
 
-  /* Feature Card */
+  .section-sm { @apply py-12 md:py-16; }
+  .section-lg { @apply py-24 md:py-32 lg:py-40; }
+
+  .container-narrow { @apply max-w-4xl mx-auto px-4 md:px-6; }
+  .container-default { @apply max-w-6xl mx-auto px-4 md:px-6; }
+  .container-wide { @apply max-w-7xl mx-auto px-4 md:px-6 lg:px-12; }
+
+  /* --- FEATURE CARDS --- */
   .feature-card {
-    @apply p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all;
+    @apply p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all duration-300;
   }
 
-  /* Gradient Text */
+  /* --- GRADIENTS --- */
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600;
   }
 
-  /* Hover Lift Effect */
+  .gradient-bg-primary {
+    @apply bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700;
+  }
+
+  .gradient-bg-light {
+    @apply bg-gradient-to-br from-slate-50 via-white to-indigo-50;
+  }
+
+  /* --- ANIMATIONS --- */
   .hover-lift {
     @apply hover:-translate-y-2 transition-transform duration-300;
   }
 
-  /* Reveal Animation */
+  .hover-scale {
+    @apply hover:scale-105 transition-transform duration-300;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-lg hover:shadow-indigo-500/20 transition-shadow duration-300;
+  }
+
+  /* Reveal animations */
   .reveal {
-    @apply opacity-0 translate-y-8;
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
   }
 
   .reveal-visible {
-    @apply opacity-100 translate-y-0 transition-all duration-700 ease-out;
+    @apply opacity-100 translate-y-0;
   }
 
   .reveal-staggered {
     @apply opacity-0 translate-y-8;
   }
 
-  /* Smooth Scroll */
-  html {
-    scroll-behavior: smooth;
+  /* Infinite scroll animation */
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
   }
 
-  /* Selection Color */
-  ::selection {
-    @apply bg-indigo-600 text-white;
+  .animate-infinite-scroll {
+    animation: infinite-scroll 30s linear infinite;
+  }
+
+  /* Pulse glow */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.5); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* --- LOADING STATES --- */
+  .skeleton {
+    @apply bg-slate-200 animate-pulse rounded;
+  }
+
+  .skeleton-text { @apply h-4 w-full; }
+  .skeleton-title { @apply h-8 w-3/4; }
+  .skeleton-avatar { @apply h-12 w-12 rounded-full; }
+  .skeleton-image { @apply h-48 w-full rounded-2xl; }
+
+  /* --- OVERLAYS --- */
+  .overlay-dark {
+    @apply absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/50 to-slate-900/60;
+  }
+
+  .overlay-light {
+    @apply absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-transparent;
   }
 }
 
+/* ============================================
+   UTILITY STYLES
+   ============================================ */
 @layer utilities {
-  /* Spacing Scale */
-  .gap-xs { @apply gap-2; }
-  .gap-sm { @apply gap-4; }
-  .gap-md { @apply gap-6; }
-  .gap-lg { @apply gap-8; }
-  .gap-xl { @apply gap-12; }
+  /* Spacing scale */
+  .space-section { @apply space-y-16 md:space-y-24; }
+  .space-content { @apply space-y-6 md:space-y-8; }
+  .space-items { @apply space-y-4; }
 
-  /* Shadow Scale */
-  .shadow-sm-soft { @apply shadow-sm; }
-  .shadow-md-soft { @apply shadow-md; }
-  .shadow-lg-soft { @apply shadow-lg shadow-slate-200/50; }
-  .shadow-xl-soft { @apply shadow-xl shadow-slate-300/40; }
+  /* Text utilities */
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
 
-  /* Border Radius Scale */
-  .rounded-xs { @apply rounded-lg; }
-  .rounded-sm { @apply rounded-xl; }
-  .rounded-md { @apply rounded-2xl; }
-  .rounded-lg { @apply rounded-3xl; }
+  /* Line clamp */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-  /* Backdrop Blur */
-  .backdrop-blur-sm { @apply backdrop-blur-sm; }
-  .backdrop-blur-md { @apply backdrop-blur-md; }
-  .backdrop-blur-lg { @apply backdrop-blur-lg; }
-  .backdrop-blur-xl { @apply backdrop-blur-xl; }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Focus visible */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500/30;
+  }
+
+  /* Aspect ratios */
+  .aspect-card { aspect-ratio: 4/5; }
+  .aspect-hero { aspect-ratio: 16/9; }
+  .aspect-square { aspect-ratio: 1/1; }
+
+  /* Z-index scale */
+  .z-base { z-index: 0; }
+  .z-dropdown { z-index: 10; }
+  .z-sticky { z-index: 20; }
+  .z-fixed { z-index: 30; }
+  .z-modal { z-index: 40; }
+  .z-popover { z-index: 50; }
+  .z-tooltip { z-index: 60; }
 }

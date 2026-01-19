@@ -1,19 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mindfulness & Bien-être Studio</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Mindfulness & Bien-être Studio | Formations en Lithothérapie, Chakras & Pleine Conscience</title>
+    <meta name="description" content="Découvrez nos formations en mindfulness, lithothérapie, équilibrage des chakras et bien-être holistique. Apprenez à utiliser les pierres et minéraux pour harmoniser votre quotidien." />
+    <meta name="keywords" content="mindfulness, lithothérapie, chakras, bien-être, méditation, pleine conscience, pierres, minéraux, formation, cours en ligne, développement personnel" />
+    <meta name="author" content="Mindfulness & Bien-être Studio" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mindfulness-studio.com/" />
+    <meta property="og:title" content="Mindfulness & Bien-être Studio | Formations Holistiques" />
+    <meta property="og:description" content="Formations en mindfulness, lithothérapie et bien-être énergétique. Transformez votre quotidien avec nos programmes certifiés." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://mindfulness-studio.com/" />
+    <meta name="twitter:title" content="Mindfulness & Bien-être Studio" />
+    <meta name="twitter:description" content="Formations en mindfulness, lithothérapie et bien-être énergétique." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mindfulness-studio.com/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#4f46e5" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Base Styles -->
     <style>
+      * { box-sizing: border-box; }
       body {
-        font-family: "Poppins", sans-serif;
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .glass {
         background: rgba(255, 255, 255, 0.7);
@@ -21,10 +55,40 @@
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
+      /* Prevent FOUC */
+      .no-js { visibility: hidden; }
+      .js { visibility: visible; }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Mindfulness & Bien-être Studio",
+      "description": "Formations en mindfulness, lithothérapie et bien-être holistique",
+      "url": "https://mindfulness-studio.com",
+      "logo": "https://mindfulness-studio.com/logo.png",
+      "sameAs": [
+        "https://facebook.com/mindfulness-studio",
+        "https://instagram.com/mindfulness-studio"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bordeaux",
+        "addressCountry": "FR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33-1-23-45-67-89",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      }
+    }
+    </script>
   </body>
 </html>
