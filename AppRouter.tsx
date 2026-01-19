@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -18,6 +18,7 @@ import { TermsAndConditions } from './components/TermsAndConditions';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { ArrowRight, Brain, Gem, Zap, Compass, Activity, Heart, Sparkles } from 'lucide-react';
 
+// Scrolling Banner Component
 const HeroBanner: React.FC = () => {
   const items = [
     { label: "Mindfulness", icon: <Brain size={20} /> },
@@ -48,6 +49,7 @@ const HeroBanner: React.FC = () => {
   );
 };
 
+// Layout wrapper with Header and Footer
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
   
@@ -56,7 +58,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   const handleNavigate = (path: string) => {
-    navigate(path);
+    if (path === 'landing') navigate('/');
+    else if (path === 'formations') navigate('/formations');
+    else if (path === 'about') navigate('/a-propos');
+    else if (path === 'public') navigate('/public');
+    else if (path === 'contact') navigate('/contact');
+    else if (path === 'legal') navigate('/mentions-legales');
+    else if (path === 'terms') navigate('/conditions-generales');
+    else if (path === 'privacy') navigate('/politique-confidentialite');
+    else navigate(path);
   };
 
   return (
@@ -68,17 +78,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
+// HOME PAGE - Full landing page content
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   
-  const handleCourseClick = (course: any) => {
-    navigate(`/formations/${course.id}`);
-  };
-
-  const handleAuthClick = (mode: 'login' | 'signup') => {
-    navigate(mode === 'login' ? '/connexion' : '/inscription');
-  };
-
   return (
     <main className="flex-grow">
       <Hero />
@@ -86,10 +89,12 @@ const HomePage: React.FC = () => {
       <AboutSection />
       <InstructorsSection />
       <StudioGallery />
-      <CourseGrid onCourseClick={handleCourseClick} />
+      <CourseGrid onCourseClick={(course) => navigate(`/formations/${course.id}`)} />
       <FeaturesSection />
       <TestimonialsSection />
       <FAQSection />
+      
+      {/* CTA Section */}
       <section className="py-32 bg-[#FDFBF9]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="relative group overflow-hidden rounded-[3.5rem] md:rounded-[5rem] border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(79,70,229,0.3)] transform transition-transform duration-700 hover:scale-[1.01]">
@@ -104,7 +109,7 @@ const HomePage: React.FC = () => {
                 Rejoignez notre studio et transformez votre quotidien avec nos outils de pleine conscience.
               </p>
               <div className="flex justify-center">
-                <button onClick={() => handleAuthClick("signup")} className="group bg-white text-indigo-700 px-12 py-6 rounded-3xl text-xl font-black hover:scale-105 transition-all shadow-2xl flex items-center gap-4 active:scale-95">
+                <button onClick={() => navigate('/inscription')} className="group bg-white text-indigo-700 px-12 py-6 rounded-3xl text-xl font-black hover:scale-105 transition-all shadow-2xl flex items-center gap-4 active:scale-95">
                   Voir nos formations
                   <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
                 </button>
@@ -117,46 +122,85 @@ const HomePage: React.FC = () => {
   );
 };
 
+// FORMATIONS PAGE - Shows all courses
 const FormationsPage: React.FC = () => {
   const navigate = useNavigate();
+  
   return (
-    <main className="flex-grow pt-24">
+    <main className="flex-grow pt-32">
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-4">Nos Formations</h1>
+        <p className="text-xl text-slate-500">Découvrez tous nos programmes de bien-être et développement personnel.</p>
+      </div>
       <CourseGrid onCourseClick={(course) => navigate(`/formations/${course.id}`)} />
     </main>
   );
 };
 
+// ABOUT PAGE - About section with instructors
 const AboutPage: React.FC = () => (
-  <main className="flex-grow pt-24">
+  <main className="flex-grow pt-32">
+    <div className="max-w-7xl mx-auto px-6 mb-12">
+      <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-4">À Propos</h1>
+      <p className="text-xl text-slate-500">Découvrez notre vision et notre équipe passionnée.</p>
+    </div>
     <AboutSection />
     <InstructorsSection />
+    <StudioGallery />
   </main>
 );
 
+// PUBLIC PAGE - Features and target audience
 const PublicPage: React.FC = () => (
-  <main className="flex-grow pt-24">
+  <main className="flex-grow pt-32">
+    <div className="max-w-7xl mx-auto px-6 mb-12">
+      <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-4">Public Cible</h1>
+      <p className="text-xl text-slate-500">À qui s'adressent nos formations et pourquoi nous rejoindre.</p>
+    </div>
     <FeaturesSection />
+    <TestimonialsSection />
+    <FAQSection />
   </main>
 );
 
-const AppRouter: React.FC = () => {
-  const [selectedCourse, setSelectedCourse] = useState<any>(null);
+// COURSE DETAIL PAGE
+const CourseDetailPage: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <main className="flex-grow pt-32">
+      <CourseDetail 
+        course={null} 
+        onBack={() => navigate('/formations')} 
+        onJoin={() => navigate('/inscription')} 
+      />
+    </main>
+  );
+};
 
+// Main App Router
+const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Main Pages */}
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/accueil" element={<Layout><HomePage /></Layout>} />
         <Route path="/formations" element={<Layout><FormationsPage /></Layout>} />
-        <Route path="/formations/:id" element={<Layout><CourseDetail course={selectedCourse} onBack={() => window.history.back()} onJoin={() => {}} /></Layout>} />
+        <Route path="/formations/:id" element={<Layout><CourseDetailPage /></Layout>} />
         <Route path="/a-propos" element={<Layout><AboutPage /></Layout>} />
         <Route path="/public" element={<Layout><PublicPage /></Layout>} />
+        
+        {/* Auth Pages - No Layout */}
         <Route path="/contact" element={<ContactPage onBack={() => window.history.back()} />} />
         <Route path="/connexion" element={<AuthPage onBack={() => window.history.back()} initialMode="login" />} />
         <Route path="/inscription" element={<AuthPage onBack={() => window.history.back()} initialMode="signup" />} />
-        <Route path="/mentions-legales" element={<Layout><LegalNotice /></Layout>} />
-        <Route path="/conditions-generales" element={<Layout><TermsAndConditions /></Layout>} />
-        <Route path="/politique-confidentialite" element={<Layout><PrivacyPolicy /></Layout>} />
+        
+        {/* Legal Pages */}
+        <Route path="/mentions-legales" element={<Layout><main className="flex-grow pt-32"><LegalNotice /></main></Layout>} />
+        <Route path="/conditions-generales" element={<Layout><main className="flex-grow pt-32"><TermsAndConditions /></main></Layout>} />
+        <Route path="/politique-confidentialite" element={<Layout><main className="flex-grow pt-32"><PrivacyPolicy /></main></Layout>} />
+        
+        {/* Catch-all - redirect to home */}
         <Route path="*" element={<Layout><HomePage /></Layout>} />
       </Routes>
     </BrowserRouter>
