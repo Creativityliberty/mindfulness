@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@source "./*.{js,ts,jsx,tsx}";
+@source "./components/**/*.{js,ts,jsx,tsx}";
+
+body {
+  background-color: #f0fdf4; /* Light green debug background */
+}

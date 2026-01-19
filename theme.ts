@@ -1,0 +1,58 @@
+
+/**
+ * THEME CONFIGURATION
+ * 
+ * Harmonie Visuelle : Indigo Profond (Sagesse) + Bleu Ciel #a2c4d3 (Sérénité)
+ */
+
+export const THEME = {
+  // BRAND COLORS (Tailwind Class Names & Hex)
+  colors: {
+    primary: "indigo-600",
+    primaryHover: "indigo-700",
+    primaryLight: "#f0f2ff",
+    primaryText: "indigo-950",
+    secondary: "#a2c4d3", // Bleu Ciel Apaisant
+    secondaryLight: "#eef5f8",
+    secondaryDark: "#7fa7b9",
+    accent: "purple-600",
+    // Added success color to fix property missing error in components/Hero.tsx
+    success: "emerald-500",
+    background: "#FDFBF9",
+    white: "white",
+    slate: "slate-900",
+    slateLight: "slate-500",
+    slateBorder: "slate-100",
+  },
+
+  // TYPOGRAPHY
+  content: {
+    brandName: "Mindfulness & Bien-être Studio",
+    hero: {
+      titlePrimary: "Un esprit libre",
+      titleAccent: "aligné.",
+      subtitle: "Découvrez le pouvoir vibratoire des pierres et maîtrisez les soins énergétiques. Apprenez à utiliser la tourmaline et les minéraux pour harmoniser votre quotidien.",
+    },
+    cta: {
+      discover: "Découvrir les formations",
+      signup: "S'inscrire",
+      login: "Connexion",
+    }
+  },
+
+  // LAYOUT & SPACING
+  spacing: {
+    sectionPadding: "py-24",
+    containerMaxWidth: "max-w-7xl",
+    borderRadiusLarge: "rounded-[3rem]",
+    borderRadiusMedium: "rounded-2xl",
+    glassEffect: "backdrop-blur-xl bg-white/70 border border-white/40",
+  },
+
+  // ANIMATIONS
+  animations: {
+    float: "animate-float",
+    bounce: "animate-bounce-slow",
+    reveal: "reveal",
+  }
+};

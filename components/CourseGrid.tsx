@@ -1,0 +1,176 @@
+
+import React, { useState } from 'react';
+import { Eye, Clock, Users, Star, Gem, Compass, Activity, Brain, ArrowRight, Filter, Sparkles, User } from 'lucide-react';
+import { THEME } from '../theme';
+import { cn } from '../lib/utils';
+
+export const courses = [
+  {
+    id: "mindfulness-101",
+    title: "Mindfulness & Pleine Conscience",
+    category: "Mental",
+    icon: <Brain className="w-5 h-5" />,
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop",
+    desc: "Apprenez à vivre l'instant présent et à gérer votre stress avec des techniques éprouvées.",
+    lessons: 12,
+    students: 450,
+    price: "89€",
+    duration: "6 semaines",
+    instructor: "Julie Martin",
+    instructorImg: "https://picsum.photos/seed/julie/100/100"
+  },
+  {
+    id: "chakras-energy",
+    title: "Chakras & Équilibrage",
+    category: "Énergie",
+    icon: <Activity className="w-5 h-5" />,
+    image: "https://images.unsplash.com/photo-1563290263-22f30b208615?q=80&w=800&auto=format&fit=crop",
+    desc: "Harmonisez vos centres d'énergie pour retrouver vitalité et paix intérieure.",
+    lessons: 15,
+    students: 320,
+    price: "129€",
+    duration: "8 semaines",
+    instructor: "Marc Durand",
+    instructorImg: "https://picsum.photos/seed/marc/100/100"
+  },
+  {
+    id: "lithotherapy-base",
+    title: "Lithothérapie & Minéraux",
+    category: "Nature",
+    icon: <Gem className="w-5 h-5" />,
+    image: "https://images.unsplash.com/photo-1567593322472-492625124297?q=80&w=800&auto=format&fit=crop",
+    desc: "Découvrez le pouvoir vibratoire des pierres et comment les utiliser au quotidien.",
+    lessons: 10,
+    students: 280,
+    price: "99€",
+    duration: "5 semaines",
+    instructor: "Sarah Lefebvre",
+    instructorImg: "https://picsum.photos/seed/sarah/100/100"
+  },
+  {
+    id: "pendulum-intuition",
+    title: "Pendule & Radiesthésie",
+    category: "Intuition",
+    icon: <Compass className="w-5 h-5" />,
+    image: "https://images.unsplash.com/photo-1614728263952-84ea206f99b6?q=80&w=800&auto=format&fit=crop",
+    desc: "Maîtrisez l'usage du pendule pour développer votre sensibilité et obtenir des réponses.",
+    lessons: 8,
+    students: 190,
+    price: "79€",
+    duration: "4 semaines",
+    instructor: "Lucas Bertrand",
+    instructorImg: "https://picsum.photos/seed/lucas/100/100"
+  }
+];
+
+const categories = ["Tout", "Mental", "Énergie", "Nature", "Intuition"];
+
+interface CourseGridProps {
+  onCourseClick?: (course: any) => void;
+}
+
+export const CourseGrid: React.FC<CourseGridProps> = ({ onCourseClick }) => {
+  const [activeCategory, setActiveCategory] = useState("Tout");
+
+  const filteredCourses = activeCategory === "Tout" 
+    ? courses 
+    : courses.filter(c => c.category === activeCategory);
+
+  return (
+    <section id="formations" className="py-24 bg-[#FDFBF9] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#a2c4d3]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 -z-0"></div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
+          <div className="max-w-3xl">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-sm"
+              style={{ backgroundColor: THEME.colors.secondary }}
+            >
+              <Sparkles size={14} />
+              Catalogue de Formations
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6">
+              Éveillez votre <span style={{ color: THEME.colors.secondary }} className="italic">potentiel</span> intérieur
+            </h2>
+            <p className="text-xl text-slate-500 font-medium leading-relaxed">
+              Explorez nos programmes conçus par des experts pour transformer votre conscience et harmoniser vos énergies.
+            </p>
+          </div>
+          
+          <button 
+            className="hidden lg:flex items-center gap-3 bg-white border px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm"
+            style={{ borderColor: THEME.colors.secondaryLight }}
+          >
+            Tout le catalogue
+            <ArrowRight size={20} style={{ color: THEME.colors.secondary }} />
+          </button>
+        </div>
+
+        {/* Bar de filtres */}
+        <div className="flex flex-wrap items-center gap-3 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={cn(
+                "px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300",
+                activeCategory === cat 
+                  ? "text-white shadow-lg scale-105" 
+                  : "bg-white text-slate-500 border border-slate-100 hover:border-[#a2c4d3] hover:text-[#7fa7b9]"
+              )}
+              style={activeCategory === cat ? { backgroundColor: THEME.colors.secondary } : {}}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Grille */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+          {filteredCourses.map((course, idx) => (
+            <div 
+              key={course.id} 
+              className="group flex flex-col bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700 overflow-hidden"
+              style={{ animationDelay: `${idx * 0.1}s` }}
+            >
+              <div className="relative h-72 overflow-hidden">
+                <img 
+                  src={course.image} 
+                  alt={course.title} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                />
+                <div className="absolute top-6 left-6">
+                  <div className="flex items-center gap-2 px-3 py-1.5 glass rounded-full text-white text-[10px] font-black uppercase tracking-widest shadow-lg" style={{ backgroundColor: THEME.colors.secondary }}>
+                    {course.icon}
+                    {course.category}
+                  </div>
+                </div>
+                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl">
+                  <span className="text-lg font-black text-indigo-600">{course.price}</span>
+                </div>
+              </div>
+              
+              <div className="p-8 flex-1 flex flex-col">
+                <h4 className="text-2xl font-black text-slate-900 mb-4 leading-tight group-hover:text-indigo-600 transition-colors">
+                  {course.title}
+                </h4>
+                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1 font-medium">
+                  {course.desc}
+                </p>
+                <button 
+                  onClick={() => onCourseClick?.(course)}
+                  className="w-full py-5 rounded-2xl bg-slate-900 text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-xl"
+                  style={{ backgroundColor: THEME.colors.secondaryDark }}
+                >
+                  Découvrir
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
