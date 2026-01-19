@@ -1,31 +1,40 @@
-
 # Mindfulness & Bien-être Studio - Architecture
 
-## 🚀 Overview
-This project is a high-end training platform built with React, Tailwind CSS, and Lucide icons. It is designed to be highly modular and easily modifiable by AI agents.
+## 🚀 Vue d'ensemble
+Ce projet est une plateforme de formation haut de gamme développée avec React, Tailwind CSS et Lucide Icons. L'architecture est pensée pour être modulaire, performante et esthétiquement irréprochable.
 
-## 📂 File Structure
-- `theme.ts`: **THE MOST IMPORTANT FILE**. Contains all brand colors, text strings, and spacing constants. Modify this to restyle the site.
-- `App.tsx`: The main orchestrator. Handles view switching between the landing page and the Auth system.
-- `components/`:
-    - `Header.tsx`: Floating navigation "island".
-    - `Hero.tsx`: High-impact landing section with animations.
-    - `AuthPage.tsx`: Split-view login/signup/forgot-password screen.
-    - `ContactChatbot.tsx`: Multi-channel contact selector and Gemini-powered AI Assistant.
-    - `CourseGrid.tsx`: Dynamic list of available training programs.
+## 📂 Structure des fichiers
+- `theme.ts` : **LE FICHIER LE PLUS IMPORTANT**. Centralise les couleurs de marque (Indigo & Bleu Ciel), les chaînes de caractères marketing et les constantes de design.
+- `App.tsx` : Chef d'orchestre du routage. Gère les transitions fluides entre la page d'accueil, les formations, les pages légales et l'espace membre.
+- `types.ts` : Définitions des interfaces TypeScript pour une robustesse accrue.
 
-## 🎨 How to Restyle
-To change the app's appearance, an AI agent should look at `theme.ts`. 
-- To change the **primary color**, update `THEME.colors.primary`.
-- To change **spacing**, update `THEME.spacing`.
-- To update **Marketing Copy**, update `THEME.content`.
+### 🧩 Composants Clés
+- `Header.tsx` : Barre de navigation flottante de type "Island" avec effets de flou (Glassmorphism).
+- `Hero.tsx` : Section d'impact avec animations de texte cycliques et visuels immersifs.
+- `CourseGrid.tsx` / `CourseDetail.tsx` : Système de catalogue complet avec filtres par catégorie et pages de détails pédagogiques.
+- `ContactChatbot.tsx` : **Mikmik IA**, un assistant intelligent (Gemini 3 Flash) intégré avec :
+    - Mode sombre ultra-moderne.
+    - Actions rapides (Quick Actions) pour la navigation.
+    - Cartes d'action WhatsApp personnalisées.
+    - Formatage de texte pur (sans Markdown) pour une lisibilité maximale.
+- `AuthPage.tsx` : Interface split-view pour la connexion et l'inscription.
+- `LegalNotice.tsx`, `TermsAndConditions.tsx`, `PrivacyPolicy.tsx` : Pages de conformité réglementaire intégrées.
 
-## 🤖 AI Assistant (Chatbot)
-The chatbot uses `gemini-3-flash-preview` for high speed and intelligent responses. The system prompt is located in `components/ContactChatbot.tsx`.
+## 🎨 Personnalisation du style
+Pour modifier l'apparence de l'application :
+1. Consultez `theme.ts`.
+2. Mettez à jour `THEME.colors` pour changer la palette.
+3. Modifiez `THEME.content` pour mettre à jour le copywriting sans toucher au code JSX.
 
-## 📱 Responsiveness
-The app uses a "Mobile-First" approach with Tailwind breakpoints:
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
-- `xl`: 1280px
+## 🤖 Intelligence Artificielle
+Le chatbot utilise le SDK `@google/genai` avec le modèle `gemini-3-flash-preview`. 
+- **Instruction Système** : Configurée pour incarner "Mikmik", un expert bienveillant.
+- **Contraintes** : L'IA est instruite de ne jamais utiliser de formatage Markdown (pas d'astérisques) pour garantir une intégration visuelle parfaite dans l'UI HTML.
+
+## 📱 Responsivité & Animations
+- Approche **Mobile-First** avec Tailwind.
+- Animations de scroll via `IntersectionObserver` pour des révélations progressives ("Reveal effects").
+- Effets 3D dans `StudioGallery.tsx` utilisant les perspectives CSS.
+
+## ⚖️ Conformité
+L'application inclut nativement la gestion du RGPD via la `PrivacyPolicy.tsx` et respecte les standards de vente en ligne via les `CGV`.
