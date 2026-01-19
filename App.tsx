@@ -9,16 +9,16 @@ import { Footer } from './components/Footer';
 import { AuthPage } from './components/AuthPage';
 import { ContactChatbot } from './components/ContactChatbot';
 import { CourseDetail } from './components/CourseDetail';
+import { ContactPage } from './components/ContactPage';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-export type ViewState = 'landing' | 'auth' | 'course-detail';
+export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('landing');
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
-  // Page reveal animation observer logic
   useEffect(() => {
     if (currentView === 'landing') {
       const observerOptions = {
@@ -54,30 +54,36 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  const navigateTo = (view: ViewState) => {
+    setCurrentView(view);
+    window.scrollTo(0, 0);
+  };
+
   const renderContent = () => {
     switch (currentView) {
       case 'auth':
-        return <AuthPage initialMode={authMode} onBack={() => setCurrentView('landing')} />;
+        return <AuthPage onBack={() => setCurrentView('landing')} initialMode={authMode} />;
       case 'course-detail':
         return <CourseDetail course={selectedCourse} onBack={() => setCurrentView('landing')} onJoin={() => handleAuthClick('signup')} />;
+      case 'contact':
+        return <ContactPage onBack={() => setCurrentView('landing')} />;
       default:
         return (
           <>
-            <Header onAuthClick={handleAuthClick} />
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
             <main className="flex-grow">
               <div className="reveal">
                 <Hero />
               </div>
-              <div className="reveal">
+              <div className="reveal" id="a-propos">
                 <AboutSection />
               </div>
-              <div className="reveal">
+              <div className="reveal" id="formations">
                 <CourseGrid onCourseClick={handleCourseClick} />
               </div>
-              <div className="reveal">
+              <div className="reveal" id="public">
                 <FeaturesSection />
               </div>
-              {/* Closing CTA */}
               <section className="py-24 bg-white reveal">
                 <div className="max-w-5xl mx-auto px-6 md:px-12">
                   <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[3rem] p-12 text-white text-center shadow-3xl overflow-hidden relative">
@@ -98,13 +104,12 @@ const App: React.FC = () => {
                         Voir nos formations
                         <ArrowRight size={24} />
                       </button>
-                      <p className="text-indigo-200 font-medium text-sm">Satisfait ou remboursé sous 14 jours</p>
                     </div>
                   </div>
                 </div>
               </section>
             </main>
-            <Footer />
+            <Footer onNavigate={navigateTo} />
           </>
         );
     }
@@ -113,11 +118,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {renderContent()}
-
-      {/* Global Contact & AI Chatbot Persistent Component */}
       <ContactChatbot />
-
-      {/* Global CSS for reveals */}
       <style>{`
         .reveal {
           opacity: 0;

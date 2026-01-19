@@ -2,9 +2,13 @@
 import React from 'react';
 import { Facebook, Instagram, Youtube, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (view: any) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
-    <footer id="contact" className="bg-slate-900 text-white pt-24 pb-12">
+    <footer id="contact-footer" className="bg-slate-900 text-white pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
         <div className="space-y-6">
           <div className="flex items-center gap-2">
@@ -28,13 +32,13 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          <h4 className="text-lg font-bold">Lien Rapides</h4>
+          <h4 className="text-lg font-bold">Liens Rapides</h4>
           <ul className="space-y-3 text-slate-400">
-            <li><a href="#" className="hover:text-indigo-400 transition-colors">Accueil</a></li>
-            <li><a href="#formations" className="hover:text-indigo-400 transition-colors">Nos Formations</a></li>
-            <li><a href="#a-propos" className="hover:text-indigo-400 transition-colors">À Propos</a></li>
-            <li><a href="#public" className="hover:text-indigo-400 transition-colors">Public visé</a></li>
-            <li><a href="#" className="hover:text-indigo-400 transition-colors">Espace Membre</a></li>
+            <li><button onClick={() => onNavigate?.('landing')} className="hover:text-indigo-400 transition-colors">Accueil</button></li>
+            <li><a href="#formations" onClick={() => onNavigate?.('landing')} className="hover:text-indigo-400 transition-colors">Nos Formations</a></li>
+            <li><a href="#a-propos" onClick={() => onNavigate?.('landing')} className="hover:text-indigo-400 transition-colors">À Propos</a></li>
+            <li><button onClick={() => onNavigate?.('contact')} className="hover:text-indigo-400 transition-colors">Contact</button></li>
+            <li><button onClick={() => onNavigate?.('auth')} className="hover:text-indigo-400 transition-colors">Espace Membre</button></li>
           </ul>
         </div>
 
