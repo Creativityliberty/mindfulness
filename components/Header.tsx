@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onAuthClick: (mode: 'login' | 'signup') => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onAuthClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -33,7 +37,7 @@ export const Header: React.FC = () => {
         )}
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 group cursor-pointer">
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
             <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-indigo-200 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Sparkles className="w-5 h-5" />
             </div>
@@ -53,9 +57,20 @@ export const Header: React.FC = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest">
-              S'inscrire
-            </button>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => onAuthClick('login')}
+                className="text-xs font-bold text-slate-900 hover:text-indigo-600 uppercase tracking-widest transition-colors"
+              >
+                Connexion
+              </button>
+              <button 
+                onClick={() => onAuthClick('signup')}
+                className="bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest"
+              >
+                S'inscrire
+              </button>
+            </div>
           </nav>
 
           {/* Mobile Toggle */}
@@ -89,9 +104,20 @@ export const Header: React.FC = () => {
             {link.name}
           </a>
         ))}
-        <button className="mt-4 bg-indigo-600 text-white px-12 py-5 rounded-full text-xl font-bold shadow-2xl">
-          S'inscrire
-        </button>
+        <div className="flex flex-col gap-4 mt-8 w-full max-w-xs">
+          <button 
+            onClick={() => { setIsMenuOpen(false); onAuthClick('login'); }}
+            className="w-full bg-slate-100 text-slate-900 py-4 rounded-2xl text-lg font-bold"
+          >
+            Connexion
+          </button>
+          <button 
+            onClick={() => { setIsMenuOpen(false); onAuthClick('signup'); }}
+            className="w-full bg-indigo-600 text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200"
+          >
+            S'inscrire
+          </button>
+        </div>
       </div>
     </div>
   );
