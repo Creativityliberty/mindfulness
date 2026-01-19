@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
+import { InstructorsSection } from './components/InstructorsSection';
+import { StudioGallery } from './components/StudioGallery';
 import { CourseGrid } from './components/CourseGrid';
 import { FeaturesSection } from './components/FeaturesSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -79,6 +81,12 @@ const App: React.FC = () => {
               </div>
               <div className="reveal" id="a-propos">
                 <AboutSection />
+              </div>
+              <div className="reveal">
+                <InstructorsSection />
+              </div>
+              <div className="reveal">
+                <StudioGallery />
               </div>
               <div className="reveal" id="formations">
                 <CourseGrid onCourseClick={handleCourseClick} />

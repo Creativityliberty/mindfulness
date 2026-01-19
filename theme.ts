@@ -13,6 +13,8 @@ export const THEME = {
     primaryHover: "indigo-700",
     primaryLight: "indigo-50",
     primaryText: "indigo-950",
+    secondary: "#a2c4d3", // La couleur demandée
+    secondaryLight: "#f0f7f9",
     accent: "purple-600",
     accentHover: "purple-700",
     success: "emerald-500",
