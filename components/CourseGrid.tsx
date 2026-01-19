@@ -2,46 +2,66 @@
 import React from 'react';
 import { Eye, Clock, Users, Star, Gem, Compass, Activity, Brain } from 'lucide-react';
 
-const courses = [
+export const courses = [
   {
+    id: "mindfulness-101",
     title: "Mindfulness & Pleine Conscience",
     category: "Mental",
     icon: <Brain className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop",
     desc: "Apprenez à vivre l'instant présent et à gérer votre stress avec des techniques éprouvées.",
     lessons: 12,
-    students: 450
+    students: 450,
+    price: "89€",
+    duration: "6 semaines",
+    instructor: "Julie Martin"
   },
   {
+    id: "chakras-energy",
     title: "Chakras & Équilibrage",
     category: "Énergie",
     icon: <Activity className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1563290263-22f30b208615?q=80&w=800&auto=format&fit=crop",
     desc: "Harmonisez vos centres d'énergie pour retrouver vitalité et paix intérieure.",
     lessons: 15,
-    students: 320
+    students: 320,
+    price: "129€",
+    duration: "8 semaines",
+    instructor: "Marc Durand"
   },
   {
+    id: "lithotherapy-base",
     title: "Lithothérapie & Minéraux",
     category: "Nature",
     icon: <Gem className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1567593322472-492625124297?q=80&w=800&auto=format&fit=crop",
     desc: "Découvrez le pouvoir vibratoire des pierres et comment les utiliser au quotidien.",
     lessons: 10,
-    students: 280
+    students: 280,
+    price: "99€",
+    duration: "5 semaines",
+    instructor: "Sarah Lefebvre"
   },
   {
+    id: "pendulum-intuition",
     title: "Pendule & Radiesthésie",
     category: "Intuition",
     icon: <Compass className="w-5 h-5" />,
     image: "https://images.unsplash.com/photo-1614728263952-84ea206f99b6?q=80&w=800&auto=format&fit=crop",
     desc: "Maîtrisez l'usage du pendule pour développer votre sensibilité et obtenir des réponses.",
     lessons: 8,
-    students: 190
+    students: 190,
+    price: "79€",
+    duration: "4 semaines",
+    instructor: "Lucas Bertrand"
   }
 ];
 
-export const CourseGrid: React.FC = () => {
+interface CourseGridProps {
+  onCourseClick?: (course: any) => void;
+}
+
+export const CourseGrid: React.FC<CourseGridProps> = ({ onCourseClick }) => {
   return (
     <section id="formations" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -95,7 +115,10 @@ export const CourseGrid: React.FC = () => {
                   </div>
                 </div>
                 
-                <button className="w-full mt-6 py-3 rounded-xl border border-slate-100 font-bold text-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all flex items-center justify-center gap-2">
+                <button 
+                  onClick={() => onCourseClick?.(course)}
+                  className="w-full mt-6 py-3 rounded-xl border border-slate-100 font-bold text-slate-700 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all flex items-center justify-center gap-2"
+                >
                   En savoir plus
                   <Eye size={18} />
                 </button>

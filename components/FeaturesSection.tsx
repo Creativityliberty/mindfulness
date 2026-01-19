@@ -51,7 +51,8 @@ export const FeaturesSection: React.FC = () => {
               {benefits.map((b, i) => (
                 <div key={i} className="flex gap-6 items-start">
                   <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    {React.cloneElement(b.icon as React.ReactElement, { size: 32 })}
+                    {/* Fix: cast to React.ReactElement<any> to resolve 'size' property error during cloning */}
+                    {React.cloneElement(b.icon as React.ReactElement<any>, { size: 32 })}
                   </div>
                   <div>
                     <h4 className="text-xl font-bold mb-2">{b.title}</h4>
