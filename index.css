@@ -59,7 +59,7 @@
 
   /* Feature Card */
   .feature-card {
-    @apply p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all group;
+    @apply p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all;
   }
 
   /* Gradient Text */
