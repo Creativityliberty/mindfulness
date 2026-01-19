@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -13,10 +14,13 @@ import { AuthPage } from './components/AuthPage';
 import { ContactChatbot } from './components/ContactChatbot';
 import { CourseDetail } from './components/CourseDetail';
 import { ContactPage } from './components/ContactPage';
+import { LegalNotice } from './components/LegalNotice';
+import { TermsAndConditions } from './components/TermsAndConditions';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { ArrowRight, Sparkles, Gem, Activity, Brain, Compass, Heart, Zap, Users, GraduationCap, Award } from 'lucide-react';
 import { THEME } from './theme';
 
-export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact';
+export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact' | 'legal' | 'terms' | 'privacy';
 
 const HeroBanner: React.FC = () => {
   const items = [
@@ -63,7 +67,6 @@ const StatsSection: React.FC = () => {
         {stats.map((s, i) => (
           <div key={i} className="text-center text-white space-y-3 reveal-staggered" style={{ transitionDelay: `${i * 100}ms` }}>
             <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-md">
-              {/* Fix: cast to React.ReactElement<any> to resolve 'size' property error during cloning */}
               {React.cloneElement(s.icon as React.ReactElement<any>, { size: 24 })}
             </div>
             <div className="text-4xl font-black">{s.value}</div>
@@ -81,26 +84,24 @@ const App: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   useEffect(() => {
-    if (currentView === 'landing') {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-          }
-        });
-      }, observerOptions);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, observerOptions);
 
-      const revealElements = document.querySelectorAll('.reveal');
-      revealElements.forEach(el => observer.observe(el));
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
 
-      return () => observer.disconnect();
-    }
+    return () => observer.disconnect();
   }, [currentView]);
 
   const handleAuthClick = (mode: 'login' | 'signup') => {
@@ -128,6 +129,30 @@ const App: React.FC = () => {
         return <CourseDetail course={selectedCourse} onBack={() => setCurrentView('landing')} onJoin={() => handleAuthClick('signup')} />;
       case 'contact':
         return <ContactPage onBack={() => setCurrentView('landing')} />;
+      case 'legal':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <LegalNotice />
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
+      case 'terms':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <TermsAndConditions />
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
+      case 'privacy':
+        return (
+          <>
+            <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
+            <PrivacyPolicy />
+            <Footer onNavigate={navigateTo} />
+          </>
+        );
       default:
         return (
           <>

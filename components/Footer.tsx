@@ -79,9 +79,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-sm">
         <p>© 2025 Mindfulness & Bien-être Studio. Tous droits réservés.</p>
         <div className="flex gap-8">
-          <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-          <a href="#" className="hover:text-white transition-colors">CGV</a>
-          <a href="#" className="hover:text-white transition-colors">Politique de confidentialité</a>
+          <button onClick={() => onNavigate?.('legal')} className="hover:text-white transition-colors">Mentions Légales</button>
+          <button onClick={() => onNavigate?.('terms')} className="hover:text-white transition-colors">CGV</button>
+          <button onClick={() => onNavigate?.('privacy')} className="hover:text-white transition-colors">Politique de confidentialité</button>
         </div>
       </div>
     </footer>
