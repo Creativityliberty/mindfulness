@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { THEME } from '../theme';
 
 interface HeaderProps {
   onAuthClick: (mode: 'login' | 'signup') => void;
@@ -32,27 +33,27 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick }) => {
       <header 
         className={cn(
           "max-w-6xl mx-auto transition-all duration-500 pointer-events-auto",
-          "glass rounded-full border border-white/40 shadow-xl",
+          THEME.spacing.glassEffect,
+          "rounded-full shadow-xl",
           isScrolled ? "py-2 px-6" : "py-3 px-8"
         )}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-indigo-200 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className={`w-10 h-10 bg-${THEME.colors.primary} rounded-full flex items-center justify-center text-white shadow-indigo-200 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
               <Sparkles className="w-5 h-5" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-indigo-950 hidden sm:block">
-              Mindfulness <span className="text-indigo-600">&</span> Bien-être
+            <span className={`text-lg font-bold tracking-tight text-${THEME.colors.primaryText} hidden sm:block`}>
+              Mindfulness <span className={`text-${THEME.colors.primary}`}>&</span> Studio
             </span>
           </div>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className="text-xs font-bold text-slate-700 hover:text-indigo-600 transition-colors uppercase tracking-[0.15em]"
+                className={`text-xs font-bold text-slate-700 hover:text-${THEME.colors.primary} transition-colors uppercase tracking-[0.15em]`}
               >
                 {link.name}
               </a>
@@ -60,20 +61,19 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick }) => {
             <div className="flex items-center gap-4">
               <button 
                 onClick={() => onAuthClick('login')}
-                className="text-xs font-bold text-slate-900 hover:text-indigo-600 uppercase tracking-widest transition-colors"
+                className={`text-xs font-bold text-slate-900 hover:text-${THEME.colors.primary} uppercase tracking-widest transition-colors`}
               >
-                Connexion
+                {THEME.content.cta.login}
               </button>
               <button 
                 onClick={() => onAuthClick('signup')}
-                className="bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest"
+                className={`bg-${THEME.colors.primary} text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-${THEME.colors.primaryHover} hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest`}
               >
-                S'inscrire
+                {THEME.content.cta.signup}
               </button>
             </div>
           </nav>
 
-          {/* Mobile Toggle */}
           <button 
             className="md:hidden text-slate-900 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -99,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick }) => {
             key={link.name} 
             href={link.href}
             onClick={() => setIsMenuOpen(false)}
-            className="text-3xl font-black text-slate-900 hover:text-indigo-600 transition-colors"
+            className={`text-3xl font-black text-slate-900 hover:text-${THEME.colors.primary} transition-colors`}
           >
             {link.name}
           </a>
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick }) => {
           </button>
           <button 
             onClick={() => { setIsMenuOpen(false); onAuthClick('signup'); }}
-            className="w-full bg-indigo-600 text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200"
+            className={`w-full bg-${THEME.colors.primary} text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200`}
           >
             S'inscrire
           </button>
