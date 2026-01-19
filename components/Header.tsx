@@ -10,6 +10,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,11 +23,11 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Accueil', href: '#', action: () => onNavigate('landing') },
-    { name: 'Formations', href: '#', action: () => onNavigate('formations') },
-    { name: 'À propos', href: '#', action: () => onNavigate('about') },
-    { name: 'Public', href: '#', action: () => onNavigate('public') },
-    { name: 'Contact', href: '#', action: () => onNavigate('contact') },
+    { name: 'Accueil', href: '/', action: () => navigate('/') },
+    { name: 'Formations', href: '/formations', action: () => navigate('/formations') },
+    { name: 'À propos', href: '/a-propos', action: () => navigate('/a-propos') },
+    { name: 'Public', href: '/public', action: () => navigate('/public') },
+    { name: 'Contact', href: '/contact', action: () => navigate('/contact') },
   ];
 
   return (

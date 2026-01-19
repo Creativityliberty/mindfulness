@@ -1,32 +1,43 @@
-
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { AboutSection } from './components/AboutSection';
-import { InstructorsSection } from './components/InstructorsSection';
-import { StudioGallery } from './components/StudioGallery';
-import { CourseGrid } from './components/CourseGrid';
-import { FeaturesSection } from './components/FeaturesSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { FAQSection } from './components/FAQSection';
-import { Footer } from './components/Footer';
-import { AuthPage } from './components/AuthPage';
-import { ContactChatbot } from './components/ContactChatbot';
-import { CourseDetail } from './components/CourseDetail';
-import { ContactPage } from './components/ContactPage';
-import { LegalNotice } from './components/LegalNotice';
-import { TermsAndConditions } from './components/TermsAndConditions';
-import { PrivacyPolicy } from './components/PrivacyPolicy';
-import { ArrowRight, Sparkles, Gem, Activity, Brain, Compass, Heart, Zap, Users, GraduationCap, Award } from 'lucide-react';
-import { THEME } from './theme';
-
-export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact' | 'legal' | 'terms' | 'privacy' | 'formations' | 'about' | 'public';
+import {
+  Activity,
+  ArrowRight,
+  Award,
+  Brain,
+  Compass,
+  Gem,
+  GraduationCap,
+  Heart,
+  Sparkles,
+  Users,
+  Zap,
+} from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { AboutSection } from "./components/AboutSection";
+import { AuthPage } from "./components/AuthPage";
+import { ContactChatbot } from "./components/ContactChatbot";
+import { ContactPage } from "./components/ContactPage";
+import { CourseDetail } from "./components/CourseDetail";
+import { CourseGrid } from "./components/CourseGrid";
+import { FAQSection } from "./components/FAQSection";
+import { FeaturesSection } from "./components/FeaturesSection";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
+import { InstructorsSection } from "./components/InstructorsSection";
+import { LegalNotice } from "./components/LegalNotice";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { StudioGallery } from "./components/StudioGallery";
+import { TermsAndConditions } from "./components/TermsAndConditions";
+import { TestimonialsSection } from "./components/TestimonialsSection";
 
 const HeroBanner: React.FC = () => {
   const items = [
     { label: "Mindfulness", icon: <Brain size={20} /> },
     { label: "Lithothérapie", icon: <Gem size={20} /> },
-    { label: "Équilibrage Énergétique", icon: <Zap size={20} className="w-5 h-5" /> },
+    {
+      label: "Équilibrage Énergétique",
+      icon: <Zap size={20} className="w-5 h-5" />,
+    },
     { label: "Radiesthésie", icon: <Compass size={20} /> },
     { label: "Chakras", icon: <Activity size={20} /> },
     { label: "Bien-être Holistique", icon: <Heart size={20} /> },
@@ -39,7 +50,10 @@ const HeroBanner: React.FC = () => {
     <div className="py-10 bg-white border-y border-slate-100 overflow-hidden relative">
       <div className="flex animate-infinite-scroll whitespace-nowrap">
         {scrollItems.map((item, i) => (
-          <div key={i} className="flex items-center gap-6 mx-12 group cursor-default">
+          <div
+            key={i}
+            className="flex items-center gap-6 mx-12 group cursor-default"
+          >
             <div className="text-indigo-600 transform group-hover:scale-125 transition-transform duration-300">
               {item.icon}
             </div>
@@ -65,12 +79,20 @@ const StatsSection: React.FC = () => {
     <div className="bg-indigo-600 py-16">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
         {stats.map((s, i) => (
-          <div key={i} className="text-center text-white space-y-3 reveal-staggered" style={{ transitionDelay: `${i * 100}ms` }}>
+          <div
+            key={i}
+            className="text-center text-white space-y-3 reveal-staggered"
+            style={{ transitionDelay: `${i * 100}ms` }}
+          >
             <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-md">
-              {React.cloneElement(s.icon as React.ReactElement<any>, { size: 24 })}
+              {React.cloneElement(s.icon as React.ReactElement<any>, {
+                size: 24,
+              })}
             </div>
             <div className="text-4xl font-black">{s.value}</div>
-            <div className="text-sm font-bold uppercase tracking-widest text-indigo-100 opacity-70">{s.label}</div>
+            <div className="text-sm font-bold uppercase tracking-widest text-indigo-100 opacity-70">
+              {s.label}
+            </div>
           </div>
         ))}
       </div>
@@ -79,40 +101,40 @@ const StatsSection: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<ViewState>('landing');
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [currentView, setCurrentView] = useState<ViewState>("landing");
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: "0px",
+      threshold: 0.1,
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-visible');
+          entry.target.classList.add("reveal-visible");
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, [currentView]);
 
-  const handleAuthClick = (mode: 'login' | 'signup') => {
+  const handleAuthClick = (mode: "login" | "signup") => {
     setAuthMode(mode);
-    setCurrentView('auth');
+    setCurrentView("auth");
     window.scrollTo(0, 0);
   };
 
   const handleCourseClick = (course: any) => {
     setSelectedCourse(course);
-    setCurrentView('course-detail');
+    setCurrentView("course-detail");
     window.scrollTo(0, 0);
   };
 
@@ -123,21 +145,34 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     switch (currentView) {
-      case 'auth':
-        return <AuthPage onBack={() => setCurrentView('landing')} initialMode={authMode} />;
-      case 'course-detail':
-        return <CourseDetail course={selectedCourse} onBack={() => setCurrentView('landing')} onJoin={() => handleAuthClick('signup')} />;
-      case 'contact':
-        return <ContactPage onBack={() => setCurrentView('landing')} />;
-      case 'formations':
+      case "auth":
+        return (
+          <AuthPage
+            onBack={() => setCurrentView("landing")}
+            initialMode={authMode}
+          />
+        );
+      case "course-detail":
+        return (
+          <CourseDetail
+            course={selectedCourse}
+            onBack={() => setCurrentView("landing")}
+            onJoin={() => handleAuthClick("signup")}
+          />
+        );
+      case "contact":
+        return <ContactPage onBack={() => setCurrentView("landing")} />;
+      case "formations":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
-            <div className="pt-24"><CourseGrid onCourseClick={handleCourseClick} /></div>
+            <div className="pt-24">
+              <CourseGrid onCourseClick={handleCourseClick} />
+            </div>
             <Footer onNavigate={navigateTo} />
           </>
         );
-      case 'about':
+      case "about":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
@@ -148,15 +183,17 @@ const App: React.FC = () => {
             <Footer onNavigate={navigateTo} />
           </>
         );
-      case 'public':
+      case "public":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
-            <div className="pt-24"><FeaturesSection /></div>
+            <div className="pt-24">
+              <FeaturesSection />
+            </div>
             <Footer onNavigate={navigateTo} />
           </>
         );
-      case 'legal':
+      case "legal":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
@@ -164,7 +201,7 @@ const App: React.FC = () => {
             <Footer onNavigate={navigateTo} />
           </>
         );
-      case 'terms':
+      case "terms":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
@@ -172,7 +209,7 @@ const App: React.FC = () => {
             <Footer onNavigate={navigateTo} />
           </>
         );
-      case 'privacy':
+      case "privacy":
         return (
           <>
             <Header onAuthClick={handleAuthClick} onNavigate={navigateTo} />
@@ -188,7 +225,7 @@ const App: React.FC = () => {
               <div className="reveal">
                 <Hero />
               </div>
-              
+
               <div className="reveal">
                 <HeroBanner />
               </div>
@@ -218,36 +255,41 @@ const App: React.FC = () => {
               <div className="reveal">
                 <FAQSection />
               </div>
-              
+
               <section className="py-32 bg-[#FDFBF9] reveal">
                 <div className="max-w-6xl mx-auto px-6">
                   <div className="relative group overflow-hidden rounded-[3.5rem] md:rounded-[5rem] border-[12px] border-white shadow-[0_40px_100px_-20px_rgba(79,70,229,0.3)] transform transition-transform duration-700 hover:scale-[1.01]">
-                    
                     <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-700 via-indigo-600 to-[#a2c4d3]"></div>
-                    
-                    <img 
-                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop" 
+
+                    <img
+                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop"
                       className="absolute top-0 right-0 w-full h-full object-cover opacity-15 mix-blend-overlay pointer-events-none"
                       alt=""
                     />
 
                     <div className="relative z-10 p-12 md:p-24 text-white text-center">
                       <h3 className="text-4xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tight">
-                        Commencez aujourd’hui votre chemin <br /> 
-                        <span className="opacity-90">vers un bien-être énergétique</span>
+                        Commencez aujourd’hui votre chemin <br />
+                        <span className="opacity-90">
+                          vers un bien-être énergétique
+                        </span>
                       </h3>
-                      
+
                       <p className="text-indigo-50 text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-medium opacity-80 leading-relaxed">
-                        Rejoignez notre studio et transformez votre quotidien avec nos outils de pleine conscience.
+                        Rejoignez notre studio et transformez votre quotidien
+                        avec nos outils de pleine conscience.
                       </p>
-                      
+
                       <div className="flex justify-center">
-                        <button 
-                          onClick={() => handleAuthClick('signup')}
+                        <button
+                          onClick={() => handleAuthClick("signup")}
                           className="group bg-white text-indigo-700 px-12 py-6 rounded-3xl text-xl font-black hover:scale-105 transition-all shadow-2xl flex items-center gap-4 active:scale-95"
                         >
                           Voir nos formations
-                          <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
+                          <ArrowRight
+                            className="group-hover:translate-x-2 transition-transform"
+                            size={28}
+                          />
                         </button>
                       </div>
                     </div>
