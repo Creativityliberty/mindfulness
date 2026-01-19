@@ -46,12 +46,12 @@ export const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            <button className="w-full sm:w-auto bg-indigo-600 text-white px-10 py-6 rounded-3xl text-lg font-bold hover:bg-indigo-700 hover:shadow-[0_20px_40px_rgba(79,70,229,0.3)] transition-all flex items-center justify-center gap-3 group active:scale-95">
+            <button className="btn-primary w-full sm:w-auto text-lg px-10 py-6 flex items-center justify-center gap-3 group">
               {THEME.content.cta.discover}
-              <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
             </button>
-            <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-8 py-6 rounded-3xl text-lg font-bold text-slate-700 hover:bg-indigo-50 transition-all border border-transparent hover:border-slate-200 group">
-              <span className="w-12 h-12 bg-white shadow-xl rounded-full flex items-center justify-center text-indigo-600 border border-slate-50 group-hover:scale-110 transition-transform">
+            <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-8 py-6 rounded-3xl text-lg font-bold text-slate-700 hover:bg-indigo-50 transition-all border border-slate-200 group hover-lift">
+              <span className="w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-indigo-600 border border-slate-100 group-hover:scale-110 transition-transform">
                 <Play size={20} fill="currentColor" />
               </span>
               Voir la vidéo

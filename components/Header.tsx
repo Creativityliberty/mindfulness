@@ -121,13 +121,13 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
         <div className="flex flex-col gap-4 mt-8 w-full max-w-xs">
           <button 
             onClick={() => { setIsMenuOpen(false); onAuthClick('login'); }}
-            className="w-full bg-slate-100 text-slate-900 py-4 rounded-2xl text-lg font-bold"
+            className="btn-secondary w-full py-4 text-lg"
           >
             Connexion
           </button>
           <button 
             onClick={() => { setIsMenuOpen(false); onAuthClick('signup'); }}
-            className="w-full bg-indigo-600 text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200"
+            className="btn-primary w-full py-4 text-lg"
           >
             S'inscrire
           </button>

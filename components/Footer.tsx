@@ -67,9 +67,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <input 
               type="email" 
               placeholder="Votre email" 
-              className="w-full px-5 py-3 rounded-xl bg-slate-800 border-transparent focus:border-indigo-400 outline-none transition-all text-sm"
+              className="input-modern bg-slate-800 border-slate-700 text-white placeholder-slate-400"
             />
-            <button className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-xl font-bold text-sm">
+            <button className="btn-primary w-full py-3 text-sm">
               S'abonner
             </button>
           </form>

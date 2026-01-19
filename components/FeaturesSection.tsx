@@ -47,16 +47,15 @@ export const FeaturesSection: React.FC = () => {
           <div className="bg-white rounded-[2.5rem] p-8 md:p-12 text-slate-900 shadow-3xl">
             <h3 className="text-3xl font-black mb-10 text-center">Apprendre à son rythme, où que vous soyez</h3>
             
-            <div className="space-y-10">
+            <div className="space-y-8">
               {benefits.map((b, i) => (
-                <div key={i} className="flex gap-6 items-start">
-                  <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    {/* Fix: cast to React.ReactElement<any> to resolve 'size' property error during cloning */}
+                <div key={i} className="flex gap-6 items-start group hover-lift">
+                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:shadow-lg group-hover:from-indigo-200 transition-all">
                     {React.cloneElement(b.icon as React.ReactElement<any>, { size: 32 })}
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2">{b.title}</h4>
-                    <p className="text-slate-500 leading-relaxed">{b.desc}</p>
+                    <h4 className="text-xl font-bold mb-2 text-slate-900">{b.title}</h4>
+                    <p className="text-slate-600 leading-relaxed font-medium">{b.desc}</p>
                   </div>
                 </div>
               ))}

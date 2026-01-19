@@ -33,12 +33,12 @@ export const AboutSection: React.FC = () => {
           <div className="relative order-2 lg:order-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4 pt-12">
-                <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg w-full aspect-square object-cover" alt="Zen" />
-                <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg w-full aspect-[3/4] object-cover" alt="Relaxation" />
+                <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg-soft w-full aspect-square object-cover hover:shadow-xl-soft transition-shadow hover:scale-105 duration-500" alt="Zen" />
+                <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg-soft w-full aspect-[3/4] object-cover hover:shadow-xl-soft transition-shadow hover:scale-105 duration-500" alt="Relaxation" />
               </div>
               <div className="space-y-4">
-                <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg w-full aspect-[3/4] object-cover" alt="Meditation course" />
-                <img src="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg w-full aspect-square object-cover" alt="Stones" />
+                <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg-soft w-full aspect-[3/4] object-cover hover:shadow-xl-soft transition-shadow hover:scale-105 duration-500" alt="Meditation course" />
+                <img src="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=600&auto=format&fit=crop" className="rounded-3xl shadow-lg-soft w-full aspect-square object-cover hover:shadow-xl-soft transition-shadow hover:scale-105 duration-500" alt="Stones" />
               </div>
             </div>
             {/* Background elements */}
