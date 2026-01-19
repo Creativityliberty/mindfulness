@@ -41,11 +41,14 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => onNavigate('landing')}>
-            <div className={`w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-indigo-200 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+            <div 
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+              style={{ backgroundColor: THEME.colors.secondary }}
+            >
               <Sparkles className="w-5 h-5" />
             </div>
-            <span className={`text-lg font-bold tracking-tight text-indigo-950 hidden sm:block`}>
-              Mindfulness <span className={`text-indigo-600`}>&</span> Studio
+            <span className="text-lg font-bold tracking-tight text-indigo-950 hidden sm:block">
+              Mindfulness <span style={{ color: THEME.colors.secondary }}>&</span> Studio
             </span>
           </div>
 
@@ -56,13 +59,11 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
                 href={link.href}
                 onClick={(e) => {
                   if(link.action) {
-                    // Si c'est un lien interne à la page landing, on laisse le comportement href
-                    // S'il change de vue, on empêche le scroll par défaut
                     if(link.name === 'Contact') e.preventDefault();
                     link.action();
                   }
                 }}
-                className={`text-xs font-bold text-slate-700 hover:text-indigo-600 transition-colors uppercase tracking-[0.15em]`}
+                className="text-xs font-bold text-slate-700 hover:text-indigo-600 transition-colors uppercase tracking-[0.15em]"
               >
                 {link.name}
               </a>
@@ -70,13 +71,13 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
             <div className="flex items-center gap-4">
               <button 
                 onClick={() => onAuthClick('login')}
-                className={`text-xs font-bold text-slate-900 hover:text-indigo-600 uppercase tracking-widest transition-colors`}
+                className="text-xs font-bold text-slate-900 hover:text-indigo-600 uppercase tracking-widest transition-colors"
               >
                 Connexion
               </button>
               <button 
                 onClick={() => onAuthClick('signup')}
-                className={`bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest`}
+                className="bg-indigo-600 text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-indigo-700 hover:shadow-indigo-200 hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-widest"
               >
                 S'inscrire
               </button>
@@ -111,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
               setIsMenuOpen(false);
               link.action();
             }}
-            className={`text-3xl font-black text-slate-900 hover:text-indigo-600 transition-colors`}
+            className="text-3xl font-black text-slate-900 hover:text-indigo-600 transition-colors"
           >
             {link.name}
           </a>
@@ -125,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({ onAuthClick, onNavigate }) => {
           </button>
           <button 
             onClick={() => { setIsMenuOpen(false); onAuthClick('signup'); }}
-            className={`w-full bg-indigo-600 text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200`}
+            className="w-full bg-indigo-600 text-white py-4 rounded-2xl text-lg font-bold shadow-2xl shadow-indigo-200"
           >
             S'inscrire
           </button>

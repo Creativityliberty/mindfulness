@@ -2,23 +2,22 @@
 /**
  * THEME CONFIGURATION
  * 
- * This file is the "Brain" of the application's visual identity.
- * Change values here to update the entire look and feel.
+ * Harmonie Visuelle : Indigo Profond (Sagesse) + Bleu Ciel #a2c4d3 (Sérénité)
  */
 
 export const THEME = {
-  // BRAND COLORS (Tailwind Class Names)
+  // BRAND COLORS (Tailwind Class Names & Hex)
   colors: {
     primary: "indigo-600",
     primaryHover: "indigo-700",
-    primaryLight: "indigo-50",
+    primaryLight: "#f0f2ff",
     primaryText: "indigo-950",
-    secondary: "#a2c4d3", // La couleur demandée
-    secondaryLight: "#f0f7f9",
+    secondary: "#a2c4d3", // Bleu Ciel Apaisant
+    secondaryLight: "#eef5f8",
+    secondaryDark: "#7fa7b9",
     accent: "purple-600",
-    accentHover: "purple-700",
+    // Added success color to fix property missing error in components/Hero.tsx
     success: "emerald-500",
-    error: "red-500",
     background: "#FDFBF9",
     white: "white",
     slate: "slate-900",
@@ -26,7 +25,7 @@ export const THEME = {
     slateBorder: "slate-100",
   },
 
-  // TYPOGRAPHY (Content strings)
+  // TYPOGRAPHY
   content: {
     brandName: "Mindfulness & Bien-être Studio",
     hero: {
@@ -50,7 +49,7 @@ export const THEME = {
     glassEffect: "backdrop-blur-xl bg-white/70 border border-white/40",
   },
 
-  // ANIMATIONS (CSS Classes)
+  // ANIMATIONS
   animations: {
     float: "animate-float",
     bounce: "animate-bounce-slow",
