@@ -106,11 +106,11 @@ export const CourseGrid: React.FC<CourseGridProps> = ({ onCourseClick }) => {
               <Sparkles size={14} />
               Catalogue de Formations
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6">
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6 animate-pulse">
               Éveillez votre{" "}
               <span
                 style={{ color: THEME.colors.secondary }}
-                className="italic"
+                className="italic animate-bounce"
               >
                 potentiel
               </span>{" "}

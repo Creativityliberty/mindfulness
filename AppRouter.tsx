@@ -115,10 +115,6 @@ const LandingPage: React.FC<{
         </div>
 
         <div className="reveal">
-          <HeroBanner />
-        </div>
-
-        <div className="reveal">
           <StatsSection />
         </div>
 
