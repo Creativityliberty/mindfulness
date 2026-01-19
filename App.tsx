@@ -14,9 +14,58 @@ import { AuthPage } from './components/AuthPage';
 import { ContactChatbot } from './components/ContactChatbot';
 import { CourseDetail } from './components/CourseDetail';
 import { ContactPage } from './components/ContactPage';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Gem, Activity, Brain, Compass, Heart } from 'lucide-react';
+import { THEME } from './theme';
 
 export type ViewState = 'landing' | 'auth' | 'course-detail' | 'contact';
+
+const HeroBanner: React.FC = () => {
+  const items = [
+    { label: "Mindfulness", icon: <Brain size={20} /> },
+    { label: "Lithothérapie", icon: <Gem size={20} /> },
+    { label: "Équilibrage Énergétique", icon: <Zap size={20} className="w-5 h-5" /> },
+    { label: "Radiesthésie", icon: <Compass size={20} /> },
+    { label: "Chakras", icon: <Activity size={20} /> },
+    { label: "Bien-être Holistique", icon: <Heart size={20} /> },
+    { label: "Pleine Conscience", icon: <Sparkles size={20} /> },
+  ];
+
+  // Double the items for seamless loop
+  const scrollItems = [...items, ...items, ...items];
+
+  return (
+    <div className="py-8 bg-white border-y border-slate-100 overflow-hidden relative">
+      <div className="flex animate-infinite-scroll whitespace-nowrap">
+        {scrollItems.map((item, i) => (
+          <div key={i} className="flex items-center gap-4 mx-12">
+            <div className="text-indigo-600">
+              {item.icon}
+            </div>
+            <span className="text-xl font-black text-slate-800 uppercase tracking-tighter">
+              {item.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Zap = ({ className, size }: { className?: string, size?: number }) => (
+  <svg 
+    width={size || 24} 
+    height={size || 24} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+  </svg>
+);
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('landing');
@@ -79,6 +128,12 @@ const App: React.FC = () => {
               <div className="reveal">
                 <Hero />
               </div>
+              
+              {/* BANDEAU DE DÉFILEMENT NICE */}
+              <div className="reveal">
+                <HeroBanner />
+              </div>
+
               <div className="reveal" id="a-propos">
                 <AboutSection />
               </div>
@@ -100,27 +155,53 @@ const App: React.FC = () => {
               <div className="reveal">
                 <FAQSection />
               </div>
-              <section className="py-24 bg-white reveal">
-                <div className="max-w-5xl mx-auto px-6 md:px-12">
-                  <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[3rem] p-12 text-white text-center shadow-3xl overflow-hidden relative">
-                    <div className="absolute top-0 right-0 p-8 text-indigo-200/20">
-                      <Sparkles size={120} />
+              
+              {/* SECTION CTA FINALE REVISITÉE */}
+              <section className="py-32 bg-[#FDFBF9] reveal">
+                <div className="max-w-6xl mx-auto px-6">
+                  <div className="relative group overflow-hidden rounded-[4rem] border-[10px] border-white shadow-[0_40px_100px_-20px_rgba(79,70,229,0.3)]">
+                    
+                    {/* Background Gradient & Images */}
+                    <div 
+                      className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-700 via-indigo-600 to-[#a2c4d3]"
+                    ></div>
+                    
+                    {/* Floating Decorative Images with low opacity */}
+                    <img 
+                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop" 
+                      className="absolute top-0 right-0 w-1/2 h-full object-cover opacity-20 mix-blend-overlay pointer-events-none"
+                      alt=""
+                    />
+                    <img 
+                      src="https://images.unsplash.com/photo-1567593322472-492625124297?q=80&w=800&auto=format&fit=crop" 
+                      className="absolute bottom-0 left-0 w-1/3 h-full object-cover opacity-10 mix-blend-screen pointer-events-none"
+                      alt=""
+                    />
+
+                    {/* Content */}
+                    <div className="relative z-10 p-12 md:p-20 text-white text-center">
+                      <h3 className="text-4xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tight">
+                        Commencez aujourd’hui votre chemin <br /> 
+                        <span className="text-indigo-100">vers un bien-être énergétique</span>
+                      </h3>
+                      
+                      <p className="text-indigo-50 text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-medium opacity-90">
+                        Rejoignez notre studio et transformez votre quotidien avec nos outils de pleine conscience.
+                      </p>
+                      
+                      <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <button 
+                          onClick={() => handleAuthClick('signup')}
+                          className="group bg-white text-indigo-700 px-12 py-6 rounded-2xl text-xl font-black hover:scale-105 transition-all shadow-2xl flex items-center gap-4"
+                        >
+                          Voir nos formations
+                          <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="text-4xl md:text-5xl font-black mb-8 leading-tight relative z-10">
-                      Commencez aujourd’hui votre chemin <br /> vers un bien-être énergétique
-                    </h3>
-                    <p className="text-indigo-100 text-xl mb-12 max-w-2xl mx-auto relative z-10">
-                      Rejoignez notre studio et transformez votre quotidien avec nos outils de pleine conscience.
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
-                      <button 
-                        onClick={() => handleAuthClick('signup')}
-                        className="bg-white text-indigo-700 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-indigo-50 hover:shadow-2xl transition-all flex items-center gap-3"
-                      >
-                        Voir nos formations
-                        <ArrowRight size={24} />
-                      </button>
-                    </div>
+
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/20 rounded-[3.5rem]"></div>
                   </div>
                 </div>
               </section>
@@ -147,6 +228,13 @@ const App: React.FC = () => {
         }
         .shadow-3xl {
           box-shadow: 0 35px 60px -15px rgba(79, 70, 229, 0.2);
+        }
+        @keyframes infinite-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-33.33%); }
+        }
+        .animate-infinite-scroll {
+          animation: infinite-scroll 40s linear infinite;
         }
       `}</style>
     </div>
