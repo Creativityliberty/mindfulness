@@ -1,15 +1,15 @@
 import {
-    Activity,
-    ArrowRight,
-    Award,
-    Brain,
-    Compass,
-    Gem,
-    GraduationCap,
-    Heart,
-    Sparkles,
-    Users,
-    Zap,
+  Activity,
+  ArrowRight,
+  Award,
+  Brain,
+  Compass,
+  Gem,
+  GraduationCap,
+  Heart,
+  Sparkles,
+  Users,
+  Zap,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -112,6 +112,10 @@ const LandingPage: React.FC<{
       <main className="flex-grow">
         <div className="reveal">
           <Hero />
+        </div>
+
+        <div className="reveal">
+          <HeroBanner />
         </div>
 
         <div className="reveal">
@@ -396,6 +400,18 @@ const AppRouter: React.FC = () => {
               <PrivacyPolicy />
               <Footer onNavigate={navigateTo} />
             </>
+          }
+        />
+
+        {/* Catch-all route - redirect to home */}
+        <Route
+          path="*"
+          element={
+            <LandingPage
+              onAuthClick={handleAuthClick}
+              onNavigate={navigateTo}
+              onCourseClick={handleCourseClick}
+            />
           }
         />
       </Routes>
