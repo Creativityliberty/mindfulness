@@ -159,8 +159,7 @@ export const CourseGrid: React.FC<CourseGridProps> = ({ onCourseClick }) => {
           {filteredCourses.map((course, idx) => (
             <div
               key={course.id}
-              className="card-premium group flex flex-col overflow-hidden hover-lift reveal"
-              style={{ animationDelay: `${idx * 0.1}s` }}
+              className="card-premium group flex flex-col overflow-hidden hover-lift"
             >
               <div className="relative h-72 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50">
                 <img
